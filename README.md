@@ -106,8 +106,8 @@ When a new container is detected, **ProxyDock** will add the necessary proxy con
 
 Once the proxy is configured, you can access the services through the proxy URL:
 
-- Service 1: `http://localhost/app1`
-- Service 2: `http://localhost/app2`
+- Service 1: `http://localhost/my-httpd1`
+- Service 2: `http://localhost/my-httpd2`
 
 Each service will be proxied to the correct container based on the configuration.
 
