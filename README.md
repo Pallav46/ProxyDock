@@ -5,6 +5,14 @@
 
 ---
 
+## Working
+
+Here are the working of ProxyDock:
+![working](./image.png)
+*working of ProxyDock*
+
+---
+
 ## Features
 
 - **Dockerized Reverse Proxy**: Automatically configures reverse proxy settings using Nginx to route traffic between Docker containers.
