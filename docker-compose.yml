@@ -11,7 +11,6 @@ services:
     depends_on:
       - app1
       - app2
-      - app3
 
   app1:
     image: httpd:latest
@@ -22,12 +21,6 @@ services:
   app2:
     image: httpd:latest
     container_name: my-httpd2
-    networks:
-      - app_network
-
-  app3:
-    image: nginx:latest
-    container_name: my-nginx
     networks:
       - app_network
 

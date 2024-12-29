@@ -4,9 +4,9 @@ const docker = new Docker();
 
 const nginxConfigFilePath = './nginx.conf';
 
-// Get the network of dockerreverseproxy-nginx-1
+// Get the network of proxydock-nginx-1
 function getNginxNetwork(callback) {
-    docker.getContainer('dockerreverseproxy-nginx-1').inspect((err, containerData) => {
+    docker.getContainer('proxydock-nginx-1').inspect((err, containerData) => {
         if (err) {
             console.error('Error fetching nginx container data:', err);
             return;
@@ -41,7 +41,7 @@ function modifyNginxConfig(containerName, networkName, containerPort) {
         const locationExists = new RegExp(`location\\s+/${containerName}\\s+{`).test(cleanedData);
 
         if (upstreamExists && locationExists) {
-            console.log(`Configuration already contains entry for ${containerName}.`);
+            // console.log(`Configuration already contains entry for ${containerName}.`);
             return;
         }
 
@@ -93,6 +93,7 @@ location /${containerName} {
                 return;
             }
             console.log(`Nginx config updated with new proxy for ${containerName}`);
+            console.log(`Access at http://localhost/${containerName}`);
             reloadNginx();
         });
     });
@@ -100,7 +101,7 @@ location /${containerName} {
 
 // Reload Nginx
 function reloadNginx() {
-    docker.getContainer('dockerreverseproxy-nginx-1').exec({
+    docker.getContainer('proxydock-nginx-1').exec({
         AttachStdout: true,
         AttachStderr: true,
         Cmd: ['nginx', '-s', 'reload']
